@@ -17,7 +17,6 @@ L293D::L293D(){
 
   this->maxDuty1 = pow(2, this->resolution1)-1;
   this->maxDuty2 = pow(2, this->resolution2)-1;
-
 }
 
 L293D::L293D(int8_t _pinIn1, int8_t _pinIn2, int8_t _pinIn3, int8_t _pinIn4, int8_t _pinEn1, int8_t _pinEn2) {
@@ -68,6 +67,9 @@ void L293D::AttachPinsMotor2(int8_t _pinIn3, int8_t _pinIn4, int8_t _pinEn2)
   }
 }
 
+/// @brief Set speed motor
+/// @param _motor 1 (motor with pins 3,5) or 2 (motor with pins 11,14)
+/// @param _value 
 void L293D::Speed(int8_t _motor, int _value){
   if(_motor == 1)
   {
