@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+    <style>
+        html, body {
+            height: 100vh;
+            height: calc(var(--vh, 1vh) * 100);
+        }
+        .modal {
+            width: 50vw;
+            height: 50vh;
+            height: calc(var(--vh, 1vh) * 50);
+        }
+        input[type=range] {
+            width: 80%;
+        }
+    </style>
+</head>
+<body  bgcolor="silver">
+    <div id="test"><b>Test</b></div>
+	
+	<br>
+	Forward-Backwards-Stop-Braking
+    <br>
+	<br>
+    <b>Motor 1: &nbsp; </b>
+    <button id="volForward" onclick="volClickForward('1')"> &#11105;</button>
+    <button id="volBackwards" onclick="volClickBackwards('1')"> &#129107;</button>
+    <button id="volStop" onclick="volClickStop('1')"> &#61;</button>
+	<button id="volBraking" onclick="volClickBraking'1')"> &#8801;</button>
+    <br>
+	<br>
+    <b>Motor 2: &nbsp; </b>
+    <button id="volForward" onclick="volClickForward('2')"> &#11105;</button>
+    <button id="volBackwards" onclick="volClickBackwards('2')"> &#129107;</button>
+    <button id="volStop" onclick="volClickStop('2')"> &#61;</button>
+	<button id="volBraking" onclick="volClickBraking('2')"> &#8801;</button>
+    <br>
+	<br>
+    <b>Motor 3: &nbsp; </b>
+    <button id="volForward" onclick="volClickForward('3')"> &#11105;</button>
+    <button id="volBackwards" onclick="volClickBackwards('3')"> &#129107;</button>
+    <button id="volStop" onclick="volClickStop('3')"> &#61;</button>
+	<button id="volBraking" onclick="volClickBraking('3')"> &#8801;</button>
+    <br>
+	<br>
+    <b>Motor 4: &nbsp; </b>
+    <button id="volForward" onclick="volClickForward('4')"> &#11105;</button>
+    <button id="volBackwards" onclick="volClickBackwards('4')"> &#129107;</button>
+    <button id="volStop" onclick="volClickStop('4')"> &#61;</button>
+	<button id="volBraking" onclick="volClickBraking('4')"> &#8801;</button>
+    <br>
+    <br>
+	<br>
+	All motor
+    <br>
+	<br>
+    <button id="volAllForward" onclick="volAllForward()"> Forward </button>
+	&nbsp;
+	<button id="volAllBackwards" onclick="volAllBackwards()"> Backwards </button>
+	<br>
+    <br>
+    <button id="volAllLeft" onclick="volAllLeft()"> Left </button>
+	&nbsp;
+	<button id="volAllRight" onclick="volAllRight()"> Right </button>
+	<br>
+    <br>
+    <button id="volAllStop" onclick="volAllStop()"> Stop </button>
+	&nbsp;
+	<button id="volAllBraking" onclick="volAllBraking()"> Braking </button>
+
+
+    <script>
+
+
+	    const resizeOps = () => {
+									document.documentElement.style.setProperty("--vh", window.innerHeight * 0.01 + "px");
+								};
+        resizeOps();
+        window.addEventListener("resize", resizeOps);
+
+
+		function volClickForward(motorNr) {
+
+	        var endpoint = window.location.origin + "/Api" + "/Forward";
+			console.log(endpoint);
+			
+            var request = new XMLHttpRequest();
+            request.open("POST", endpoint, true);
+            request.setRequestHeader("Content-Type", "application/json");
+
+            request.onreadystatechange = function () 
+            {
+                if (request.readyState === 4 && request.status === 200) 
+                  console.log("ok");
+				else
+				 console.log("error");
+            };
+			
+           var data = JSON.stringify({ 
+                                        "motorNr": motorNr, 
+                                        "value": "100" ,
+                                        });
+           request.send(data);
+			
+        }
+ 
+
+    </script>
+
+</body>
+</html>
