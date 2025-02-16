@@ -11,9 +11,10 @@ L293D::L293D(){
   this->resolution1 = DEFAULT_RESOLUTION;
   this->frequency1 = DEFAULT_FREQUENCY;
   this->channel1 = DEFAULT_CHANNEL1;
+
   this->resolution2 = DEFAULT_RESOLUTION;
   this->frequency2 = DEFAULT_FREQUENCY;
-  this->channel2 = DEFAULT_CHANNEL1;
+  this->channel2 = DEFAULT_CHANNEL2;
 
   this->maxDuty1 = pow(2, this->resolution1)-1;
   this->maxDuty2 = pow(2, this->resolution2)-1;
