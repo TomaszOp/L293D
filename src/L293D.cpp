@@ -21,8 +21,22 @@ L293D::L293D(){
 }
 
 L293D::L293D(int8_t _pinIn1, int8_t _pinIn2, int8_t _pinIn3, int8_t _pinIn4, int8_t _pinEn1, int8_t _pinEn2) {
+
+  this->resolution1 = DEFAULT_RESOLUTION;
+  this->frequency1 = DEFAULT_FREQUENCY;
+  this->channel1 = DEFAULT_CHANNEL1;
+
+  this->resolution2 = DEFAULT_RESOLUTION;
+  this->frequency2 = DEFAULT_FREQUENCY;
+  this->channel2 = DEFAULT_CHANNEL2;
+
+  this->maxDuty1 = pow(2, this->resolution1)-1;
+  this->maxDuty2 = pow(2, this->resolution2)-1;
+
   AttachPinsMotor1(_pinIn1, _pinIn2, _pinEn1);
   AttachPinsMotor2(_pinIn3, _pinIn4, _pinEn2);
+
+
 }
 
 L293D::~L293D() {
@@ -48,6 +62,10 @@ void L293D::AttachPinsMotor1(int8_t _pinIn1, int8_t _pinIn2, int8_t _pinEn1)
   if(this->pinEn1 != PIN_NOT_ATTACHED)
   {
     pinMode(this->pinEn1, OUTPUT);
+
+    Serial.println("channel1");
+    Serial.println(this->channel1);
+
     ledcAttachChannel(this->pinEn1, this->frequency1, this->resolution1, this->channel1);
   }
 }
